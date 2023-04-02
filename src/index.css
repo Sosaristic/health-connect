@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/static/Inter-Regular.ttf");
+}
+@font-face {
+  font-family: "Jost";
+  src: url("/fonts/jost/static/Jost-Regular.ttf");
+}
+@layer base{
+  html{
+    font-family: Inter, sans-serif;
+  }
+}

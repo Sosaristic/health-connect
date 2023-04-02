@@ -10,7 +10,7 @@ function App() {
     
        
        
-      <p className="text-red-500">
+      <p className=" text-white bg-primary">
         welcome to health connect
       </p>
     </div>
