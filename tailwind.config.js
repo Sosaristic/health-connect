@@ -10,7 +10,8 @@ export default {
         primary: "#1d8e66",
         secondary: "#e7f6f1",
         shadow: "#f9f9f9",
-        white: "#ffffff"
+        white: "#ffffff",
+        hover: "rgb(41, 120, 100)"
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
