@@ -4,13 +4,10 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import App from './App'
 import './index.css'
 import { AppProvider } from './context/AppContext'
+import Register from './pages/Register'
+import { router } from './router'
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />
-  }
-])
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AppProvider>

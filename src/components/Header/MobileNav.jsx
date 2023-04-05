@@ -9,7 +9,7 @@ function MobileNav() {
   console
   return (
     <nav className="w-full  flex flex-col items-center justify-center md:hidden shadow-lg fixed z-[10] h-[10vh] bg-secondary">
-      <div className="relative flex items-center justify-center w-full h-full p-4">
+      <div className="h-full p-4 w-full  flex justify-center items-center relative">
        <div className="w-full px-4 bg-secondary  h-full absolute z-[30]  flex justify-between items-center ">
         <Link to={'/'} className="text-primary font-jost font-semibold text-[1.8rem] ">HealthConnect</Link>
         {toggle ?   <button type="button" className="h-[3rem] w-[3rem] flex items-center justify-center" onClick={()=>setToggle(false)}>
@@ -38,10 +38,10 @@ function MobileNav() {
               <Link to={'/'} className="w-full block hover:bg-primary hover:text-white py-2 text-[1.5rem] font-medium text-center">Contact</Link>
             </li>
              <li className="w-full">
-              <Link to={'/'} className="w-full block hover:bg-primary hover:text-white py-2 text-[1.5rem] font-medium text-center">Login</Link>
+              <Link to={'/login'} className="w-full block hover:bg-primary hover:text-white py-2 text-[1.5rem] font-medium text-center">Login</Link>
             </li>
             <li className="w-full">
-              <Link to={'/'} className="w-full block bg-primary text-white py-2 text-[1.5rem] font-medium text-center">Signup</Link>
+              <Link to={'/sign-up'} className="w-full block bg-primary text-white py-2 text-[1.5rem] font-medium text-center">Signup</Link>
             </li>
            </ul>
         </div>
