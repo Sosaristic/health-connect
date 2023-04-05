@@ -20,7 +20,7 @@ export default function UserTypeInput() {
 
       <div className="flex gap-4">
         <div
-          className={`w-1/2 max-w-[9rem] cursor-pointer relative flex flex-col flex-1  border-2 ${
+          className={`w-1/2 max-w-[9rem] min-h-[10rem] cursor-pointer relative flex flex-col flex-1  border-2 ${
             value == "doctor" ? "shadow-user-select-shadow" : "none"
           }   rounded-md items-center justify-center`}
           onClick={()=>handleUserCardClick("doctor")}
@@ -32,7 +32,7 @@ export default function UserTypeInput() {
           </div>
         </div>
         <div
-          className={`w-1/2 max-w-[9rem] cursor-pointer relative flex flex-col flex-1  border-2 ${
+          className={`w-1/2 max-w-[9rem] min-h-[10rem] cursor-pointer relative flex flex-col flex-1  border-2 ${
             value == "patient" ? "shadow-user-select-shadow" : "none"
           }   rounded-md items-center justify-center`}
           onClick={()=>handleUserCardClick("patient")}

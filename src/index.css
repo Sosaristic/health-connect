@@ -80,7 +80,7 @@ display: block;
   border-radius: 50%;
   border: 1px solid #1d8e66;
   cursor: pointer;
-  overflow: hidden;
+  /* overflow: hidden; */
 
 
 }
@@ -93,6 +93,7 @@ display: block;
   left: 0;
   height: 100%;
   width: 100%;
+  border-radius: 50%;
 }
 .radio-label input:checked ~ .radio-input-span{
   background-color: #1d8e66;
@@ -100,7 +101,7 @@ display: block;
 .radio-input-span::after{
   content: "";
   position: absolute;
-  left: 6px;
+  left: 7px;
   bottom: 6px;
   width: 9px;
   height: 14px;
