@@ -5,6 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    theme: {
+      screens: {
+        'md': {'min': '770px'},
+      },
+    },
     extend: {
       colors: {
         primary: "#1d8e66",
