@@ -1,13 +1,17 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { GoogleLogin, SignUpForm, LoginForm, UserTypeInput } from "../components/Form";
+import ConsultantImg from "../assets/svg/medical-consultant.svg";
 export default function Register() {
   const { pathname } = useLocation();
 
   return (
-    <div className="md:bg-primary flex w-[80%] md:w-[95%] lg:w-[85%] mx-auto relative rounded-[2rem]">
-      <div className="lg:w-2/5 md:w-2/4 hidden md:flex px-4">
-        <p className="w-full mt-8 text-[2rem] font-extrabold text-white capitalize">Connect with the best <br /> specialist all over the country</p>
+    <div className="md:bg-primary flex w-[80%] md:w-[100%]  min-h-[100vh] mx-auto relative ">
+      <div className="relative lg:w-2/5 md:w-2/4 hidden md:flex px-4">
+        <p className="w-full mt-8 text-[2rem] font-extrabold text-white capitalize">
+          Connect with the best <br /> specialist all over the country
+        </p>
+        <img src={ConsultantImg} alt="" className="absolute bottom-0 max-w-[30rem]"/>
       </div>
 
       <div className="bg-white w-full md:w-2/4 lg:w-3/5 md:p-[1rem_4rem] relative rounded-[2rem]">
