@@ -12,7 +12,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.footer ul a{
+  font-size: .9rem;
+}
 .footer_cols ul {
   display: flex;
   flex-direction: column;
@@ -25,4 +27,5 @@
 
 .footer_cols_header {
   text-transform: uppercase;
+  
 }

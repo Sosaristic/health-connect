@@ -1,95 +1,100 @@
-import React, { Fragment } from 'react'
-import classes from './Footer.module.css'
+import React, { Fragment, useMemo } from "react";
+import classes from "./Footer.module.css";
+import { ImFacebook } from "react-icons/im";
+import { BsInstagram, BsTwitter } from "react-icons/bs";
+
+const FooterCard = ({ title, array }) => {
+  return (
+    <div className="flex flex-col">
+      <h3 className="text-[1.5rem] font-jost font-bold">{title}</h3>
+      <ul className="flex flex-col gap-2 mt-2">
+        {array?.map((item) => {
+          return (
+            <li key={item.id}>
+              <a href="#" className="hover:text-[#000]">
+                {item.text}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
 const Footer = () => {
+  const contactUs = useMemo(() => {
+    return [
+      { text: "+2348125000000", id: 1 },
+      { text: "healthconnect@gmail.com", id: 2 },
+      { text: "182 Ijaya BLVD, Ojuta", id: 3 },
+
+      { text: "Lagos, Nigeria", id: 4 },
+    ];
+  }, []);
+
+  const services = useMemo(() => {
+    return [
+      { text: "Home", id: 1 },
+      { text: "About", id: 2 },
+      { text: "Services", id: 3 },
+      { text: "Blog", id: 4 },
+    ];
+  }, []);
+  const information = useMemo(() => {
+    return [
+      { text: "About Us", id: 1 },
+      { text: "Privacy Policy", id: 2 },
+      { text: "Terms & Conditions", id: 3 },
+      { text: "FAG", id: 4 },
+    ];
+  }, []);
+
   return (
     <Fragment>
-      <footer className={`${classes.footer} bg-primary`}>
-        <div className={classes.footer_up}>
-          <a
-            href="#"
-            className={`${classes.footer_header} text-[2rem] font-jost font-bold`}
-          >
+      <footer className={` bg-primary w-full text-white flex flex-col py-4 px-4 relative`}>
+        <div className="flex flex-col lg:flex-row relative w-full gap-x-2 gap-y-4">
+
+          <div className="flex w-full md:w-1/3 flex-1 flex-col lg:flex-row gap-y-4">
+          <a href="#" className={` text-[2rem] font-jost font-bold w-full  flex-1`}>
             HealthConnect
           </a>
-          <div className={`${classes.footer_cols}`}>
-            <ul>
-              <div className={classes.footer_cols_header}>Contact us</div>
-              <li>
-                <a href="#">+2348125000000</a>
-              </li>
-              <li>
-                <a href="#">healthconnect@gmail.com</a>
-              </li>
-              <li>
-                <a href="#">182 Ijaya BLVD, Ojuta</a>
-              </li>
-              <li>
-                <a href="#">Lagos, Nigeria</a>
-              </li>
-            </ul>
+
+            <FooterCard title="Contact Us" array={contactUs} />
+          
           </div>
 
-          <div className={classes.footer_cols}>
-            <ul>
-              <div className={classes.footer_cols_header}>Services</div>
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Services</a>
-              </li>
-              <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
-            </ul>
+          <div className="flex w-full md:w-1/3 flex-1 justify-around flex-col lg:flex-row gap-y-4">
+            <FooterCard title="Services" array={services} />          
+            <FooterCard title="Information" array={information} />          
           </div>
 
-          <div className={classes.footer_cols}>
-            <ul>
-              <div className={classes.footer_cols_header}>Information</div>
+          <div className="flex flex-col w-full md:w-1/3  flex-1">
+            <h3 className="text-[1.5rem] font-jost font-bold">Follow Us</h3>
+            <ul className="flex gap-4 mt-2">
               <li>
-                <a href="#">About Us</a>
+                <a href="">
+                  <ImFacebook size={24} />
+                </a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="">
+                  <BsInstagram size={24} />
+                </a>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
-              </li>
-              <li>
-                <a href="#">FAQ</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className={classes.footer_cols}>
-            <ul>
-              <li>
-                <a href="#"></a>In
-              </li>
-              <li>
-                <a href="#"></a>Tw
-              </li>
-              <li>
-                <a href="#"></a>Fb
+                <a href="">
+                  <BsTwitter size={24} />
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className={classes.footer.down}>
-          ©HealthConnect 2023, All rights reserved
-        </div>
+        <div className="text-center text-[.7rem] lg:text-[1rem] mt-8">©HealthConnect 2023, All rights reserved</div>
       </footer>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
