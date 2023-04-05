@@ -5,8 +5,8 @@ export default function Register() {
   const { pathname } = useLocation();
 
   return (
-    <div className="md:bg-primary flex w-[80%] md:w-[95%] lg:w-[85%] mx-auto relative rounded-[2rem]">
-      <div className="lg:w-2/5 md:w-2/4 hidden md:flex px-4">
+    <div className= "md:bg-primary flex w-[80%] md:w-[95%] lg:w-[85%] mx-auto relative rounded-[2rem]">
+      <div className="hidden px-4 lg:w-2/5 md:w-2/4 md:flex">
         <p className="w-full mt-8 text-[2rem] font-extrabold text-white capitalize">Connect with the best <br /> specialist all over the country</p>
       </div>
 
