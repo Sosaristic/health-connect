@@ -1,7 +1,9 @@
+import { GoogleLogin, LoginForm, SignUpForm, UserTypeInput } from "../components/Form";
+
+import ConsultantImg from "../assets/svg/medical-consultant.svg";
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { GoogleLogin, SignUpForm, LoginForm, UserTypeInput } from "../components/Form";
-import ConsultantImg from "../assets/svg/medical-consultant.svg";
+
 export default function Register() {
   const { pathname } = useLocation();
 

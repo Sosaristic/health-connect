@@ -24,7 +24,7 @@ export default function LoginForm() {
         [name]: checked,
       });
     }
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function LoginForm() {
   };
   return (
     <div className="">
-      <form action="" className="w-full" onSubmit={handleSubmit}>
+      <form action="" className="w-full p-4" onSubmit={handleSubmit}>
         
 
        
@@ -58,7 +58,7 @@ export default function LoginForm() {
         <div className="mt-8">
           <button
             type="submit"
-            className="bg-primary rounded-2xl w-full  py-3 text-white font-bold hover:bg-hover"
+            className="w-full py-3 font-bold text-white bg-primary rounded-2xl hover:bg-hover"
           >
             Sign In
           </button>
