@@ -9,9 +9,9 @@ function MainNav() {
       <div className="w-[80%] h-full flex items-center justify-between">
         <Link className="text-[2rem] font-jost font-bold text-primary">HealthConnect</Link>
         <div className="flex items-center justify-between w-[45%]">
-          <ul className="flex list-none items-center gap-6 font-semibold">
+          <ul className="flex items-center gap-6 font-semibold list-none">
             <li>
-              <Link className="hover:text-primary font-semibold">Home</Link>
+              <Link className="font-semibold hover:text-primary">Home</Link>
             </li>
             <li>
               <Link className="hover:text-primary">About</Link>
@@ -26,12 +26,12 @@ function MainNav() {
               <Link className="hover:text-primary">Contact</Link>
             </li>
           </ul>
-          <ul className=" flex list-none items-center gap-4">
+          <ul className="flex items-center gap-4 list-none ">
             <li>
               <Link className='text-primary'>Login</Link>
             </li>
             <li>
-              <Link className="p-2 bg-primary text-white rounded">Signup</Link>
+              <Link className="p-2 text-white rounded bg-primary">Signup</Link>
             </li>
            </ul>
         </div>
