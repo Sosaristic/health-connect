@@ -21,12 +21,12 @@ export default function Hero() {
           <img src={HeroImg} alt='' className='h-full w-full object-contain absolute z-[2]' />
         </div>
       </div>
-      <div className='w-[80%] md:w-full md:bg-primary z-[2] flex justify-center -translate-y-[.5rem] md:translate-y-0 md:h-[20vh]'>
+      <div className='w-[80%] md:w-full md:bg-primary z-[2] flex justify-center -translate-y-[.5rem] md:translate-y-0 md:h-[15vh]'>
       <div className='w-[80%] bg-primary  flex flex-col justify-between md:flex-row gap-2 items-center '>
        {successHistory.map((success,i)=>(
           <div key={i} className='w-[70%] md:w-[20%] p-4 flex flex-col items-center text-center'>
-          <h3 className='text-[2rem] md:text-[2.5rem] text-white font-jost'>{success.value}</h3>
-          <p className='text-white md:text-[1.5rem]'>{success.name}</p> 
+          <h3 className='text-[2rem] lg:text-[2.5rem] text-white font-jost'>{success.value}</h3>
+          <p className='text-white lg:text-[1.5rem]'>{success.name}</p> 
         </div>
        ))}
       </div>
