@@ -17,6 +17,10 @@ export default {
         inter: ['Inter', 'sans-serif'],
         jost: ['Jost', 'sans-serif'],
       },
+      backgroundImage:{
+        circle:"linear-gradient(20deg, #08eae7 0%, #2AF598 100%)",
+        
+      }
     },
   },
   plugins: [],

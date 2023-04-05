@@ -17,7 +17,7 @@ export default function Hero() {
         </Link>
         </div>
         <div className='w-full h-[20rem] md:h-full relative flex items-center'>
-          <div className='w-[60%] h-[60%]  bg-primary rounded-[50%] border-none absolute z-0  translate-x-1/2'></div>
+          <div className='w-[60%] h-[60%]  bg-circle  rounded-[50%] border-none absolute z-0  translate-x-1/2'></div>
           <img src={HeroImg} alt='' className='h-full w-full object-contain absolute z-[2]' />
         </div>
       </div>
