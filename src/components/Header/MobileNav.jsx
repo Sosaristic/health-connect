@@ -7,11 +7,7 @@ function MobileNav() {
   const [toggle,setToggle] = useState(false)
   console
   return (
-<<<<<<< HEAD
-    <nav className="w-full  flex flex-col items-center justify-center md:hidden shadow-lg fixed z-[10] h-[10vh] bg-secondary">
-=======
     <nav className="w-full  flex flex-col items-center justify-center lg:hidden shadow-lg fixed z-[10] h-[10vh] bg-secondary">
->>>>>>> origin/main
       <div className="h-full p-4 w-full  flex justify-center items-center relative">
        <div className="w-full px-4 bg-secondary  h-full absolute z-[30]  flex justify-between items-center ">
         <Link to={'/'} className="text-primary font-jost font-semibold text-[1.8rem] ">HealthConnect</Link>

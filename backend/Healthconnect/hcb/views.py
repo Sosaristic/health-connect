@@ -7,14 +7,14 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.conf import settings
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserLoginSerializer,UserSignUpSerializer
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSignUpSerializer
 
 class UserLoginView(generics.GenericAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserLoginSerializer
 
     def post(self, request):
         email = request.data.get('email', None)
@@ -33,7 +33,7 @@ class UserLoginView(generics.GenericAPIView):
 }, status=status.HTTP_401_UNAUTHORIZED)
 
 class PasswordResetView(generics.GenericAPIView):
-    serializer_class = serializers.EmailSerializer
+    # serializer_class = serializers.EmailSerializer
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
