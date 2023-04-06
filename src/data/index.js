@@ -1,7 +1,4 @@
 
-
-
-
 export const successHistory = [
     {
         name:'Doctor',
