@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom"
 import { useAppContext } from "../../context/AppContext"
 
-
 function MainNav() {
   const { inView } = useAppContext()
   return (
    <nav  className={` hidden lg:flex w-full  lg:flex-col md:items-center lg:justify-center  shadow-md bg-secondary h-[10vh] ${!inView && 'fixed  top-0 left-0 z-[10]'}`}>
       <div className="w-[80%] h-full flex items-center justify-between">
         <Link className="text-[2rem] font-jost font-bold text-primary">HealthConnect</Link>
+<<<<<<< HEAD
         <div className="flex items-center justify-between w-[45%]">
+=======
+        <div className="flex items-center justify-between w-[60%] 2xl:w-[45%]">
+>>>>>>> origin/main
           <ul className="flex list-none items-center gap-6 font-semibold">
             <li>
               <Link className="font-semibold hover:text-primary">Home</Link>
@@ -31,6 +34,13 @@ function MainNav() {
               <Link to={'/login'} className='text-primary'>Login</Link>
             </li>
             <li>
+<<<<<<< HEAD
+=======
+
+              <Link className="p-2 text-white rounded bg-primary">Signup</Link>
+
+              <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
+>>>>>>> origin/main
               <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
             </li>
            </ul>

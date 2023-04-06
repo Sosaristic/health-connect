@@ -5,3 +5,4 @@ export { default as GoogleLogin } from "./GoogleLogin";
 export {default as SignUpForm} from "./SignUpForm"
 export {default as LoginForm} from "./LoginForm"
 export {default as UserTypeInput} from "./UserTypeInput"
+export {default as RadioButton} from "./RadioButton"
