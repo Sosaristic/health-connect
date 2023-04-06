@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { useAppContext } from "../../context/AppContext"
 
-
 function MainNav() {
   const { inView } = useAppContext()
   return (
@@ -31,11 +30,11 @@ function MainNav() {
               <Link to={'/login'} className='text-primary'>Login</Link>
             </li>
             <li>
-<<<<<<< HEAD
+
               <Link className="p-2 text-white rounded bg-primary">Signup</Link>
-=======
+
               <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
->>>>>>> 49f6778898146e17dbccff42ac0d43e58d46775b
+              <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
             </li>
            </ul>
         </div>
