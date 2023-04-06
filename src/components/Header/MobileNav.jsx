@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { FaTimes } from "react-icons/fa";
+import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { Link } from "react-router-dom"
-
+import { useState } from "react";
 
 function MobileNav() {
   const [toggle,setToggle] = useState(false)
@@ -13,7 +12,7 @@ function MobileNav() {
        <div className="w-full px-4 bg-secondary  h-full absolute z-[30]  flex justify-between items-center ">
         <Link to={'/'} className="text-primary font-jost font-semibold text-[1.8rem] ">HealthConnect</Link>
         {toggle ?   <button type="button" className="h-[3rem] w-[3rem] flex items-center justify-center" onClick={()=>setToggle(false)}>
-           < FaTimes className="h-[80%] w-[80%] text-primary" />
+           < FaTimes className="h-[80%] w-[50%] text-primary" />
         </button>:
           <button type="button" className="h-[3rem] w-[3rem] flex items-center justify-center" onClick={()=>setToggle(true)}>
           <HiOutlineBars3BottomRight className="h-[80%] w-[80%] text-primary" />
@@ -21,7 +20,7 @@ function MobileNav() {
       }
        </div>
         <div className={`absolute w-full top-[100%] z-[3] transition-[transform] ${toggle?'translate-y-0':'-translate-y-[100%]'} py-8 px-4 bg-white z-0 `}>
-           <ul className="text-primary w-full">
+           <ul className="w-full text-primary">
             <li className="w-full">
               <Link to={'/'} className="w-full block hover:bg-primary hover:text-white py-2 text-[1.5rem] font-medium text-center">Home</Link>
             </li>

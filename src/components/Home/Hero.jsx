@@ -28,11 +28,9 @@ export default function Hero() {
           <h3 className='text-[2rem] lg:text-[2.5rem] text-white font-jost'>{success.value}</h3>
           <p className='text-white lg:text-[1.5rem]'>{success.name}</p> 
         </div>
-       ))}
       </div>
-      </div>
-     
-      
+
+
     </div>
   )
 }
