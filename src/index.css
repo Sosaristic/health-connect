@@ -113,3 +113,8 @@ display: none;
 .radio-label input:checked ~ .radio-input-span::after{
   display: block;
 }
+
+.swiper-pagination .swiper-pagination-bullet-active{
+  opacity: 1;
+  background-color: #1d8e66;
+}

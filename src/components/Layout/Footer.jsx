@@ -1,5 +1,4 @@
 import React, { Fragment, useMemo } from "react";
-import classes from "./Footer.module.css";
 import { ImFacebook } from "react-icons/im";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 
