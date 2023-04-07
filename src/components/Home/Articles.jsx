@@ -34,7 +34,7 @@ const Articles = () => {
     <Fragment>
       <section
         id="articles"
-        className="flex flex-col justify-center items-center p-10 gap-10"
+        className="flex flex-col justify-center items-center p-4 md:p-8 lg:p-10 gap-10"
       >
         <h3
           className="uppercase relative self-center font-bold font-jost text-[1.3rem] 
@@ -46,7 +46,7 @@ const Articles = () => {
         <div className="flex flex-col md:flex-row gap-7">
           {blogPosts.map((article) => (
             <div className="flex flex-col w-full gap-5 rounded-2xl overflow-hidden shadow">
-              <div className="w-full h-[20rem] md:h-full">
+              <div className="w-full min-h-[20rem] h-[20rem]">
                 <img
                   src={article.image}
                   alt="articles"
