@@ -37,7 +37,7 @@ export default function Testimonial() {
     <section className="bg-secondary w-[95%] md:w-[80%] mx-auto mt-[6rem] mb-8 flex flex-col px-2 py-8 lg:px-8 lg:py-8 rounded-2xl relative">
       <h3
         className="relative self-center font-bold font-jost text-[1.3rem] 
-      before:block before:absolute before:w-[40%] before:h-[3px]
+      before:block before:absolute before:w-[50%] before:h-[3px]
        before:bg-primary before:bottom-0 before:left-[50%] before:translate-x-[-50%] mb-4"
       >
         TESTIMONIALS

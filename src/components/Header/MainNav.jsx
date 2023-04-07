@@ -31,9 +31,7 @@ function MainNav() {
             </li>
             <li>
 
-              <Link className="p-2 text-white rounded bg-primary">Signup</Link>
-
-              <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
+             
               <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
             </li>
            </ul>
