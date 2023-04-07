@@ -26,6 +26,9 @@
  .textfield:focus-within .password-icon{
   @apply text-primary
  }
+ .medical-icons{
+  filter: invert(41%) sepia(91%) saturate(355%) hue-rotate(107deg) brightness(92%) contrast(91%);
+ }
  
 }
 

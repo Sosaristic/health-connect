@@ -4,7 +4,7 @@ function ServicesCard({title, description, icon}) {
   return (
     <div className="relative p-4 basis-full min-h-[12.313rem] sm:basis-[45%] lg:basis-[30%] flex flex-col gap-4 flex-1 rounded-2xl shadow-services-card">
       <div className="bg-secondary w-[3rem] h-[3rem] flex items-center justify-center rounded-xl">
-        <FaTooth className="text-primary text-[2rem]"/>
+        <img src={icon} alt="" className="medical-icons"/>
       </div>
       <p className="font-bold">{title}</p>
       <div className="text-[.8rem] text-gray-500">
@@ -26,8 +26,8 @@ export default function Services() {
       </h3>
       <div className="flex relative flex-wrap gap-8">
         {ServicesData?.map((item)=>{
-          const {id, title, description} = item
-          return  <ServicesCard key={id} title={title} description={description}/>
+          const {id, title, description, icon} = item
+          return  <ServicesCard key={id} title={title} description={description} icon={icon}/>
         })}
       </div>
       
