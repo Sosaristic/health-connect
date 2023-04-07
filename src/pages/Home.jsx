@@ -1,7 +1,8 @@
 import React from 'react'
-import { Hero, Testimonial } from '../components/Home'
+
 import AboutUs from '../components/Home/AboutUs'
 import Articles from '../components/Home/Articles'
+import { Hero, Testimonial, Services } from '../components/Home'
 import Layout from '../components/Layout/Layout'
 import Footer from '../components/Layout/Footer'
 
@@ -10,8 +11,10 @@ export default function Home() {
     <Layout>
       <Hero />
       <AboutUs />
-      <Articles />
+     
+      <Services />
       <Testimonial />
+       <Articles />
       <Footer />
     </Layout>
   )
