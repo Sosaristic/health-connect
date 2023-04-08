@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Navbar from '../Header/Navbar'
+import Footer from './Footer'
 
 
 function Layout({children}) {
@@ -9,6 +10,7 @@ function Layout({children}) {
         <main>
             {children}
         </main>
+        <Footer />
 
     </Fragment>
   )
