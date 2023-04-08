@@ -23,8 +23,8 @@ export default function Hero() {
           </button>
         </div>
         <div className="w-full h-[20rem]  md:h-full relative flex items-center">
-          <div className="min-w-[60%] min-h-[60%]  bg-circle  rounded-[50%] border-none absolute z-0  translate-x-1/2"></div>
-          <img src={HeroImg} alt="" className="h-full w-full object-contain absolute z-[2]" />
+          <div className="min-w-[14rem] min-h-[14rem] lg:min-w-[22rem] lg:min-h-[22rem]  bg-circle  rounded-[50%] border-none absolute z-0  left-[50%] translate-x-[-50%]"></div>
+          <img src={HeroImg} alt="" className="h-full w-full object-contain absolute z-[2] left-[50%] translate-x-[-50%]" />
         </div>
       </div>
       <div className="w-[80%] md:w-full md:bg-primary z-[2] flex justify-center -translate-y-[.5rem] md:translate-y-0 md:h-[15vh]">
