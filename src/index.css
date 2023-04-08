@@ -29,7 +29,10 @@
  .medical-icons{
   filter: invert(41%) sepia(91%) saturate(355%) hue-rotate(107deg) brightness(92%) contrast(91%);
  }
- 
+ .justify-text{
+  text-align: justify;
+  text-justify: inter-word;
+ }
 }
 
 .checkbox-label{
