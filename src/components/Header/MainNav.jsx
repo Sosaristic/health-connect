@@ -30,16 +30,10 @@ function MainNav() {
               <Link to={'/login'} className='text-primary'>Login</Link>
             </li>
             <li>
-
-             
               <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
             </li>
            </ul>
         </div>
-
-       
-          
-       
       </div> 
    </nav>
   )

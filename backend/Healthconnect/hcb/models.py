@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+import uuid
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -18,12 +19,29 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, password, **extra_fields)
 
+
+User_Roles = (
+    ('PATIENT','PATIENT'),
+    ('DOCTOR','DOCTOR'),
+)
+User_Gender = (
+    ('MALE','MALE'),
+    ('FEMALE','FEMALE'),
+)
+
 class User(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    role= models.CharField(max_length=30,choices=User_Roles)
+    state=models.CharField(max_length=20,null=True, blank=True)
+    image= models.ImageField(upload_to='users', null=True,blank=True,default='default.jpg')
+    phone_number = models.CharField(max_length=20 , blank=True,null=True)
+    gender = models.CharField(max_length=10, choices=User_Gender,null=True,blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
@@ -31,3 +49,54 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+Patient_MaritalStatus = (
+    ('SINGLE', 'SINGLE'),
+    ('MARRIED', 'MARRIED'),
+    ('DIVORCED', 'DIVORCED'),
+)
+
+class Patient (models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    user=models.OneToOneField(User, on_delete=models.CASCADE,related_name='patient')
+    blood_group=models.CharField(max_length=30,null=True,blank=True)
+    genotype=models.CharField(max_length=30,null=True,blank=True)
+    weight=models.FloatField(null=True,blank=True)
+    age=models.IntegerField(null=True, blank=True)
+    marital_status=models.CharField(max_length=20, choices=Patient_MaritalStatus, null=True, blank=True)
+    medical_history=models.TextField(blank=True, null=True)
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.last_name}'
+    
+    
+class Specialization(models.Model):
+    name = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.name
+
+class Doctor(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    user= models.OneToOneField(User, on_delete=models.CASCADE,related_name='doctor')
+    hospital=models.CharField(max_length=50,null=True,blank=True)
+    experience=models.IntegerField(null=True,blank=True)
+    field = models.CharField( max_length=50, null=True,blank=True)
+    
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.last_name}'
+    
+    
+class Appointment(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    start_date = models.DateTimeField(auto_now=True)
+    end_date = models.DateTimeField()
+    
+    def __str__(self) -> str:
+        return f'{self.id}'
+    
+    
