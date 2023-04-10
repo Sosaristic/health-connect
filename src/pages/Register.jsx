@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Register() {
   const { pathname } = useLocation();
+ 
 
   return (
     <div className="md:bg-primary flex w-[80%] md:w-[100%]  min-h-[100vh] mx-auto relative ">

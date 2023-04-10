@@ -34,10 +34,6 @@ function MainNav() {
             </li>
            </ul>
         </div>
-
-       
-          
-       
       </div> 
    </nav>
   )

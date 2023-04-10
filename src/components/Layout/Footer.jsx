@@ -1,11 +1,10 @@
 import React, { Fragment, useMemo } from "react";
-import classes from "./Footer.module.css";
 import { ImFacebook } from "react-icons/im";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 
 const FooterCard = ({ title, array }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <h3 className="text-[1.5rem] font-jost font-bold">{title}</h3>
       <ul className="flex flex-col gap-2 mt-2">
         {array?.map((item) => {
@@ -52,24 +51,22 @@ const Footer = () => {
 
   return (
     <Fragment>
-      <footer className={` bg-primary w-full text-white flex flex-col py-4 px-4 relative`}>
-        <div className="flex flex-col lg:flex-row relative w-full gap-x-2 gap-y-4">
+      <footer className={` bg-primary w-full  text-white flex flex-col py-4 px-4 relative`}>
+        <div className="flex flex-col md:flex-row relative w-full lg:w-[80%] mx-auto gap-x-4 gap-y-4 flex-wrap">
 
-          <div className="flex w-full md:w-1/3 flex-1 flex-col lg:flex-row gap-y-4">
-          <a href="#" className={` text-[2rem] font-jost font-bold w-full  flex-1`}>
+          
+          <a href="#" className={` text-[1.5rem] font-jost basis-[18%] md:basis-[30%] lg:basis-[18%]  font-bold w-full   flex-[1]`}>
             HealthConnect
           </a>
 
-            <FooterCard title="Contact Us" array={contactUs} />
+            <div className="flex-1 basis-[18%] md:basis-[30%] lg:basis-[18%]"><FooterCard title="Contact Us" array={contactUs} /></div>
           
-          </div>
+          
 
-          <div className="flex w-full md:w-1/3 flex-1 justify-around flex-col lg:flex-row gap-y-4">
-            <FooterCard title="Services" array={services} />          
-            <FooterCard title="Information" array={information} />          
-          </div>
+            <div className="flex-1 basis-[18%] md:basis-[30%] lg:basis-[18%]"><FooterCard title="Services" array={services} /></div>          
+            <div className="flex-1 basis-[18%] md:basis-[30%] lg:basis-[18%]"><FooterCard title="Information" array={information} /></div>          
 
-          <div className="flex flex-col w-full md:w-1/3  flex-1">
+          <div className="flex flex-col w-full md:w-1/3  flex-1 basis-[18%] md:basis-[30%] lg:basis-[18%]">
             <h3 className="text-[1.5rem] font-jost font-bold">Follow Us</h3>
             <ul className="flex gap-4 mt-2">
               <li>
