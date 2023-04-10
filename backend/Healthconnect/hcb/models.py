@@ -96,4 +96,7 @@ class Appointment(models.Model):
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField()
     
+    def __str__(self) -> str:
+        return f'{self.id}'
+    
     
