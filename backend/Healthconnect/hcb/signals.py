@@ -13,14 +13,14 @@ def createProfile(sender, instance, created, **kwargs):
             Doctor.objects.create(user=user)   
         
 
-def deleteProfile(sender, instance, created, **kwargs):
-    print('create',created)
-    if not created:
-        user = instance
-        if user.role == 'PATIENT':
-            user.patient.delete()   
-        if user.role == 'DOCTOR':
-            user.doctor.delete()
+def deleteProfile(sender, instance, **kwargs):
+    print('create')
+    user = instance
+    if user.role == 'PATIENT':
+        user.patient.delete() 
+    if user.role == 'DOCTOR':
+        user.doctor.delete()
+
 
 post_save.connect(createProfile, sender=User)
 post_delete.connect(deleteProfile, sender=User)
