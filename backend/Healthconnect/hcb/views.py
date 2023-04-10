@@ -161,7 +161,7 @@ class UpdateDeleteDoctorProfileView(generics.UpdateAPIView,generics.DestroyAPIVi
         serializer = self.get_serializer(doctor, many=False)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
-    def delete(self):
+    def delete(self,request):
         user = self.request.user
         user.delete()
         return Response({'message':'User sucessfully deleted'},status.HTTP_204_NO_CONTENT)
