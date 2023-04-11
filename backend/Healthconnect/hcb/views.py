@@ -17,8 +17,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import User,Doctor,Patient
 from .serializers import (UserLoginSerializer,UserSignUpSerializer,
                           MyTokenObtainPairSerializer,UserSerializer,
-                          PatientProfileSerializer,DoctorProfileSerializer,
-                          DoctorProfileSerializer2
+                          PatientProfileSerializer,DoctorProfileSerializer
                           )
 
 

@@ -32,7 +32,7 @@ function SlidePrevButton() {
 }
 
 export default function Testimonial() {
-  console.log(testmonialData);
+  
   return (
     <section className="bg-secondary w-[95%] md:w-[80%] mx-auto mt-[6rem] mb-8 flex flex-col px-2 py-8 lg:px-8 lg:py-8 rounded-2xl relative">
       <h3

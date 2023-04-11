@@ -7,9 +7,9 @@ export default function Hero() {
   const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col items-center bg-secondary">
-      <div className=" flex flex-col md:flex-row  md:items-center md:w-[80%] sm:h-[80vh] md:h-[30vh] lg:h-[35vh] xl:h-[70vh]">
+      <div className=" flex flex-col md:flex-row  md:items-center md:w-[80%] sm:h-[80vh] md:h-[50vh] lg:h-[50vh] xl:h-[70vh]">
         <div className="p-4 flex flex-col gap-4 ">
-          <h1 className="text-[1.8rem] md:text-[2.5rem] font-jost font-bold text-primary lg:text-[3.5rem]">
+          <h1 className="text-[1.8rem] sm:text-[2.5rem]  font-jost font-bold text-primary lg:text-[2.5rem] xl:text-[3.5rem]">
             Your Health is Our <br /> Top Priority{" "}
           </h1>
           <div>
@@ -35,10 +35,10 @@ export default function Hero() {
                 key={i}
                 className="w-[70%] md:w-[20%] p-4 flex flex-col items-center text-center"
               >
-                <h3 className="text-[2rem] lg:text-[2.5rem] text-white font-jost">
+                <h3 className="text-[2rem] md:text-[2rem] lg:text-[2.5rem] text-white font-jost">
                   {success.value}
                 </h3>
-                <p className="text-white lg:text-[1.5rem]">{success.name}</p>
+                <p className="text-white  ">{success.name}</p>
               </div>
             );
           })}

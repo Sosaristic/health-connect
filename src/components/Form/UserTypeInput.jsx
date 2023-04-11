@@ -3,15 +3,8 @@ import DoctorImg from "../../assets/svg/doctor.svg";
 import PatientImg from "../../assets/svg/man.svg";
 import RadioButton from "./RadioButton";
 
-export default function UserTypeInput() {
-  const [value, setValue] = useState("doctor");
-  const handleUser = (e) => {
-    setValue(e.target.value);
-  };
-
-  const handleUserCardClick = (user)=>{
-    user == "doctor"? setValue("doctor") : setValue("patient")
-  }
+export default function UserTypeInput({handleUser,handleUserCardClick,value}) {
+ 
   return (
     <div className="flex lg:w-[50%] flex-col relative mx-auto mt-4 gap-2">
       <div className="text-center font-bold">

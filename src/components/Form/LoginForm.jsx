@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { TextField } from "../Form";
+import { useAuthContext } from "../../context/AuthContext";
+import { useNavigate,useLocation } from "react-router-dom"
 
-export default function LoginForm() {
+
+export default function LoginForm({role}) {
+  const navigate = useNavigate()
+  const { state } = useLocation();
   const [loginValues, setLoginValues] = useState({
     surname: "",
     firstname: "",
     email: "",
     password: "",
+    role,
     agree: false,
   });
+  const {logIn} =  useAuthContext()
 
   const onChange = ({ target }) => {
     const { name, value, checked } = target;
@@ -26,9 +33,12 @@ export default function LoginForm() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(loginValues);
+    await logIn(loginValues)
+    navigate(state?.path || "/");
+
   };
   return (
     <div className="">

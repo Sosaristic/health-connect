@@ -129,14 +129,8 @@ class PatientProfileSerializer(serializers.ModelSerializer):
         user = self.get_user(obj)
         return user['gender'] 
          
-    
-        
-
-            
-              
-        
+           
          
-
         
                   
         
@@ -193,69 +187,4 @@ class DoctorProfileSerializer(serializers.ModelSerializer):
          
     
         
-
-            
-              
-        
-    
-    
-    
-class DoctorProfileSerializer2(serializers.ModelSerializer):
-   
-    uid = serializers.SerializerMethodField(read_only=True)
-    image = serializers.SerializerMethodField(read_only=True)
-    email = serializers.SerializerMethodField(read_only=True)
-    firstname  = serializers.SerializerMethodField(read_only=True)
-    lastname = serializers.SerializerMethodField(read_only=True)
-    phonenumber = serializers.SerializerMethodField(read_only=True)
-    gender = serializers.SerializerMethodField(read_only=True)
-    state = serializers.SerializerMethodField(read_only=True)
-    class Meta:
-        model=Doctor
-        fields=('uid','image','email','firstname','lastname','phonenumber','gender','state','hospital','experience','field')
-    
-    def get_user(self, obj):
-        user = obj.user
-        serializer = UserProfileSeriliazer(user, many=False)
-        return serializer.data 
-    
-        
-    def get_uid(self, obj):
-        user = self.get_user(obj)
-        print(user)
-        return user['id']
-    
-    def get_image(self, obj):
-        user = self.get_user(obj)
-        return user['image'] 
-    
-    def get_email(self, obj):
-        user = self.get_user(obj)
-        return user['email']
-    
-    def get_firstname(self, obj):
-        user = self.get_user(obj)
-        return user['first_name']
-    
-    def get_lastname(self, obj):
-        user = self.get_user(obj)
-        return user['last_name'] 
-    
-    def get_phonenumber(self, obj):
-        user = self.get_user(obj)
-        return user['phone_number'] 
-     
-    def get_state(self, obj):
-        user = self.get_user(obj)
-        return user['state'] 
-    
-    def get_gender(self, obj):
-        user = self.get_user(obj)
-        return user['gender'] 
-         
-    
-        
-
-            
-              
-        
+  

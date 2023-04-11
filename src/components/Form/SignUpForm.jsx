@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField, CheckBox } from "../Form";
+import { useAuthContext } from "../../context/AuthContext";
 
-export default function SignUpForm() {
+export default function SignUpForm({role}) {
+  const {signUp} =  useAuthContext()
   const [signUpValues, setSignUpValues] = useState({
-    surname: "",
     firstname: "",
+    lastname: "",
     email: "",
     password: "",
     agree: false,
+    role
   });
 
   const onChange = ({ target }) => {
@@ -27,9 +30,10 @@ export default function SignUpForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(signUpValues);
+     await signUp(signUpValues)
   };
   return (
     <div>
@@ -38,17 +42,17 @@ export default function SignUpForm() {
         <div className="flex flex-col lg:flex-row relative gap-x-8 gap-y-4 mt-[2rem]">
           <div className="lg:w-1/2">
             <TextField
-              placeholder="Surname"
-              name="surname"
-              value={signUpValues.surname}
+              placeholder="First Name"
+              name="firstname"
+              value={signUpValues.firstname}
               onChange={onChange}
             />
           </div>
           <div className="lg:w-1/2 ">
             <TextField
-              placeholder="First Name"
-              name="firstname"
-              value={signUpValues.firstname}
+              placeholder="Last Name"
+              name="lastname"
+              value={signUpValues.lastname}
               onChange={onChange}
             />
           </div>
@@ -87,6 +91,7 @@ export default function SignUpForm() {
 
         <div className="mt-4">
           <button
+            disabled={false}
             type="submit"
             className="bg-primary rounded-2xl w-full  py-3 text-white font-bold hover:bg-hover"
           >

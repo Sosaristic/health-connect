@@ -1,11 +1,27 @@
 import { GoogleLogin, LoginForm, SignUpForm, UserTypeInput } from "../components/Form";
 
 import ConsultantImg from "../assets/svg/medical-consultant.svg";
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation,useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Register() {
-  const { pathname } = useLocation();
+  const { pathname,state } = useLocation();
+  const { isAuth } = useAuthContext();
+  const navigate = useNavigate()
+
+  const [value, setValue] = useState("DOCTOR");
+  const handleUser = (e) => {
+    setValue(e.target.value);
+  };
+
+  useEffect(()=>{
+      if(isAuth) navigate(state?.pathname || '/')
+  },[isAuth])
+
+  const handleUserCardClick = (user)=>{
+    user == "DOCTOR"? setValue("DOCTOR") : setValue("PATIENT")
+  }
  
 
   return (
@@ -23,9 +39,13 @@ export default function Register() {
         ) : (
           <h2 className="mt-[3rem] font-[900] text-[1.5rem]">Create Account</h2>
         )}
-        <UserTypeInput />
+        <UserTypeInput 
+         handleUserCardClick={handleUserCardClick}
+         handleUser={handleUser}  
+         value={value}  
+         />
 
-        {pathname == "/sign-up" ? <SignUpForm /> : <LoginForm />}
+        {pathname == "/sign-up" ? <SignUpForm role={value} /> : <LoginForm role={value} />}
         {/* sign up with google */}
 
         <div className="mt-8">

@@ -1,17 +1,18 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import Home from "./pages/Home";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import { useAuthContext } from "./context/AuthContext";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const { isAuth } =  useAuthContext()
+  const { pathname } = useLocation()
+  console.log({isAuth})
   return (
     <>
-      <Layout>
+     {isAuth ? <Layout>
       <Outlet />
-      </Layout>
+      </Layout> : <Navigate to={'/login'} replace state={{path:pathname}}  />
+    }
     </>
   );
 }
