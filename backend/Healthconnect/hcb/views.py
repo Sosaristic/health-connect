@@ -15,8 +15,7 @@ from django.urls import reverse
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import User,Doctor,Patient
-from .serializers import (UserLoginSerializer,UserSignUpSerializer,
-                          MyTokenObtainPairSerializer,UserSerializer,
+from .serializers import (UserSignUpSerializer,MyTokenObtainPairSerializer,
                           PatientProfileSerializer,DoctorProfileSerializer
                           )
 
@@ -25,72 +24,9 @@ from .serializers import (UserLoginSerializer,UserSignUpSerializer,
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
     
-
-# class GetUsers(mixins.ListModelMixin, generics.GenericAPIView):
-#     queryset = User.objects.all()
-#     permission_classes = [IsAdminUser]
-#     serializer_class = UserSerializer
-    
-#     def get(self, request):
-#         print(request.user.is_staff)
-#         return self.list(request)
-
-
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSignUpSerializer
-
-class UserLoginView(generics.GenericAPIView):
-    serializer_class = UserLoginSerializer
-
-    def post(self, request):
-        email = request.data.get('email', None)
-        password = request.data.get('password', None)
-        user = authenticate(request, email=email, password=password)
-
-        if user:
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                    'userId': user.id,
-                    'refresh': str(refresh),
-                    'access': str(refresh.access_token),
-                })
-           
-        else:
-            return Response({
-                'error': 'Invalid email or password'
-}, status=status.HTTP_401_UNAUTHORIZED)
-
-
-
-
-# class PasswordResetView(generics.GenericAPIView):
-    # serializer_class = serializers.EmailSerializer
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            email = serializer.validated_data['email']
-            try:
-                user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                pass
-            else:
-                token_generator = default_token_generator
-                context = {
-                    'email': email,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'token': token_generator.make_token(user),
-                    'protocol': 'http' if settings.DEBUG else 'https',
-                }
-                reset_url = reverse('password_reset_confirm')
-                reset_url = f'{context["protocol"]}://{request.get_host()}{reset_url}?{urlencode(context)}'
-                send_mail(
-                    'Password reset',
-                    f'Click the following link to reset your password: {reset_url}',
-                    settings.DEFAULT_FROM_EMAIL,
-                    [email],
-                )
-            return Response({'success': 'Password reset email sent'})
         
 class UpdateDeletePatientProfileView(generics.UpdateAPIView,generics.DestroyAPIView):
     serializer_class=PatientProfileSerializer

@@ -4,30 +4,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User,Patient,Doctor
 
 
-class UserSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField(read_only=True)
-
+class UserSerializerToken(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'name', 'email', 'role')
-
-    def get_name(self, obj):
-        name = obj.first_name
-        if name == '':
-            name = obj.email
-        return name
-
-
-class UserSerializerToken(UserSerializer):
-    token = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = User
-        fields = ('id', '_id', 'name','email', 'token')
-
-    def get_token(self, obj):
-        token = RefreshToken.for_user(obj)
-        return str(token.access_token)
+        fields = ('id','role','email')
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -35,21 +15,21 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         fields = ('role','email','password')
         model = User
         
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
+    # @classmethod
+    # def get_token(cls, user):
+    #     token = super().get_token(user)
 
-        token["role"] = user.role
+    #     token["role"] = user.role
 
-        return token
+    #     return token
 
-    # def validate(self, attrs):
-    #     data = super().validate(attrs)
+    def validate(self, attrs):
+        data = super().validate(attrs)
 
-    #     serializer = UserSerializerToken(self.user).data
-    #     for k, v in serializer.items():
-    #         data[k] = v
-    #     return data
+        serializer = UserSerializerToken(self.user).data
+        for k, v in serializer.items():
+            data[k] = v
+        return data
 
 class UserSignUpSerializer(serializers.ModelSerializer):
     class Meta:
@@ -71,6 +51,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ('email', 'password','role')
         extra_kwargs = {'password': {'write_only': True}}
+        
+
 
 class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
@@ -98,7 +80,6 @@ class PatientProfileSerializer(serializers.ModelSerializer):
     
     def get_uid(self, obj):
         user = self.get_user(obj)
-        print(user)
         return user['id']
     
     def get_image(self, obj):
