@@ -27,7 +27,7 @@ const AuthContext = createContext()
   export function useAuthContext() {
     const context = useContext(AuthContext)
     if (context == undefined) {
-      throw new Error('useAppContext must be within a App provider')
+      throw new Error('useAuthContext must be within a App provider')
     }
     return context
   }

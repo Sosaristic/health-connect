@@ -4,9 +4,12 @@ import { API_URL } from '../constant'
 
 function useAuthState() {
    const [isAuth,setIsAuth] =  useState(false)
+   const [userInfo,setUserInfo] = useState({})
     
    useEffect(()=>{
-        const token = sessionStorage.getItem('token')
+        const token = localStorage.getItem('token')
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+        setUserInfo(userInfo)
         if(!token) {
             setIsAuth(false)
         }
@@ -42,7 +45,13 @@ const logIn = async (input)=>{
     try{
         const {data} = await axios.post(`${API_URL}/api/v1/signin/`,user)
         console.log({data})
-        sessionStorage.setItem('token',data.access)
+        localStorage.setItem('token',data.access)
+        const userDetail = {
+            uid:data.id,
+            role:data.role
+        }
+        localStorage.setItem('userInfo',JSON.stringify(userDetail))
+        setUserInfo(userDetail)
         setIsAuth(true)
     }
     catch(error){
@@ -53,12 +62,12 @@ const logIn = async (input)=>{
 }
 
 const signOut = ()=>{
-    sessionStorage.clear()
+    localStorage.clear()
     setIsAuth(false)
     console.log('Logged out')
  }
 
-  return { logIn , isAuth , signUp,signOut}
+  return { logIn , isAuth , signUp, signOut, userInfo}
 }
 
 export default useAuthState
