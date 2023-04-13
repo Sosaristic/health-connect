@@ -3,6 +3,7 @@ import App from "./App";
 import Register from "./pages/Register";
 import BookAppointment from "./pages/BookAppointment";
 import Home from "./pages/Home";
+import { BookingPage } from "./components/BooKAppointment";
 
 export const router = createBrowserRouter([
   {
@@ -10,8 +11,11 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/book-appointment", element: <BookAppointment /> },
-    ],
+      { path: "/book-appointment", element: <BookAppointment />},
+      {path: "/book-appointment/:id", element: <BookingPage />}
+    ]
+    
+    
   },
   {
     path: "/login",

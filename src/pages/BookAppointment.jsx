@@ -6,7 +6,7 @@ export default function BookAppointment() {
       <AppointmentHeader />
       <section className='flex flex-wrap justify-center gap-4 mt-8 mb-4'>
         
-        {Array.from({length: 6}, ()=><SpecialistCard />)}
+        {Array.from({length: 6}, (item, id)=>< SpecialistCard key={id} id={id}/>)}
       </section>
     </main>
   )
