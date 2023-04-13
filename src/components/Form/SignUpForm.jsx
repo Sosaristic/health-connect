@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import { TextField, CheckBox } from "../Form";
 
-export default function SignUpForm() {
+ function SignUpForm({userType}) {
   const [signUpValues, setSignUpValues] = useState({
     surname: "",
     firstname: "",
@@ -29,7 +29,11 @@ export default function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signUpValues);
+    const details = {
+      ...signUpValues,
+      userType
+    }
+    console.log(details);
   };
   return (
     <div>
@@ -97,3 +101,4 @@ export default function SignUpForm() {
     </div>
   );
 }
+export default SignUpForm

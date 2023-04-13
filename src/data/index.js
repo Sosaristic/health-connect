@@ -1,11 +1,11 @@
 import { GiHeartOrgan, GiMedicines } from "react-icons/gi";
 import HeartIcon from "../assets/svg/heart.svg"
-import EyeIcon from "../assets/svg/eye.svg"
 import UrologyIcon from "../assets/svg/urology.svg"
 import PharmacyIcon from "../assets/svg/pharmacy_alt.svg"
 import DiabetesIcon from "../assets/svg/diabetes.svg"
 import NeurologyIcon from "../assets/svg/neurology.svg"
 import SurgicalIcon from "../assets/svg/surgical.svg"
+
 export const successHistory = [
   {
     name: "Doctor",

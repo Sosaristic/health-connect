@@ -1,4 +1,3 @@
-import { FaTooth } from "react-icons/fa";
 import {ServicesData} from "../../data/index"
 function ServicesCard({title, description, icon}) {
   return (

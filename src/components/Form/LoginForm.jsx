@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { TextField } from "../Form";
 
-export default function LoginForm() {
+ function LoginForm({userType}) {
   const [loginValues, setLoginValues] = useState({
-    surname: "",
-    firstname: "",
     email: "",
     password: "",
-    agree: false,
+    
   });
 
   const onChange = ({ target }) => {
@@ -28,7 +26,11 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginValues);
+    const details = {
+      ...loginValues,
+      userType
+    }
+    console.log(details);
   };
   return (
     <div className="">
@@ -67,3 +69,4 @@ export default function LoginForm() {
     </div>
   );
 }
+export default React.memo(LoginForm)

@@ -1,12 +1,16 @@
+import React, {useState} from "react";
+import { useLocation } from "react-router-dom";
 import { GoogleLogin, LoginForm, SignUpForm, UserTypeInput } from "../components/Form";
 
 import ConsultantImg from "../assets/svg/medical-consultant.svg";
-import React from "react";
-import { useLocation } from "react-router-dom";
 
 export default function Register() {
   const { pathname } = useLocation();
- 
+ const [userType, setUserType] = useState("doctor")
+
+ function onChangeUserType(userType){
+setUserType(userType)
+ }
 
   return (
     <div className="md:bg-primary flex w-[80%] md:w-[100%]  min-h-[100vh] mx-auto relative ">
@@ -23,9 +27,9 @@ export default function Register() {
         ) : (
           <h2 className="mt-[3rem] font-[900] text-[1.5rem]">Create Account</h2>
         )}
-        <UserTypeInput />
+        <UserTypeInput userType= {userType} handleUserType={onChangeUserType}/>
 
-        {pathname == "/sign-up" ? <SignUpForm /> : <LoginForm />}
+        {pathname == "/sign-up" ? <SignUpForm userType={userType}/> : <LoginForm userType={userType}/>}
         {/* sign up with google */}
 
         <div className="mt-8">

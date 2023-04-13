@@ -48,7 +48,7 @@ const Articles = () => {
         </h3>
         <div className="flex flex-col lg:flex-row gap-7">
           {blogPosts.map((article) => (
-            <div className="flex flex-col w-full gap-5 rounded-2xl overflow-hidden shadow">
+            <div key={article.id} className="flex flex-col w-full gap-5 rounded-2xl overflow-hidden shadow">
               <div className="w-full min-h-[15rem] h-[15rem]">
                 <img
                   src={article.image}
