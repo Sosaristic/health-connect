@@ -10,19 +10,19 @@ function MainNav() {
         <div className="flex items-center justify-between w-[60%] 2xl:w-[45%]">
           <ul className="flex list-none items-center gap-6 font-semibold">
             <li>
-              <Link className="font-semibold hover:text-primary">Home</Link>
+              <Link to={'/'} className="font-semibold hover:text-primary">Home</Link>
             </li>
             <li>
-              <Link className="hover:text-primary">About</Link>
+              <Link to={'/'} className="hover:text-primary">About</Link>
             </li>
             <li>
-              <Link className="hover:text-primary">Services</Link>
+              <Link to={'/'} className="hover:text-primary">Services</Link>
             </li>
             <li>
-              <Link className="hover:text-primary">Blog</Link>
+              <Link to={'/'} className="hover:text-primary">Blog</Link>
             </li>
             <li>
-              <Link className="hover:text-primary">Contact</Link>
+              <Link  to={'/'} className="hover:text-primary">Contact</Link>
             </li>
           </ul>
           <ul className="flex items-center gap-4 list-none ">
@@ -30,16 +30,10 @@ function MainNav() {
               <Link to={'/login'} className='text-primary'>Login</Link>
             </li>
             <li>
-
-             
               <Link to={'/sign-up'} className="p-2 bg-primary text-white rounded">Signup</Link>
             </li>
            </ul>
         </div>
-
-       
-          
-       
       </div> 
    </nav>
   )

@@ -7,7 +7,7 @@ export default function Hero() {
   const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col items-center bg-secondary">
-      <div className="w-full flex flex-col md:flex-row  md:items-center md:w-[95%] sm:h-[80vh] md:h-[30vh] lg:h-[35vh] xl:h-[70vh]">
+      <div className=" flex flex-col md:flex-row  md:items-center md:w-[95%] lg:w-[80%] sm:h-[80vh] md:h-[30vh] lg:h-[35vh] xl:h-[70vh]">
         <div className="p-4 flex flex-col gap-4 ">
           <h1 className="text-[1.8rem] md:text-[2.5rem] font-jost font-bold text-primary lg:text-[3.5rem]">
             Your Health is Our <br /> Top Priority{" "}
@@ -42,7 +42,7 @@ export default function Hero() {
               </div>
             );
           })}
-        </div>
+      </div>
       </div>
     </div>
   );
