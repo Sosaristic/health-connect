@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react'
 import Navbar from '../Header/Navbar'
-import Footer from './Footer'
+import Footer from './Footer';
+import { Outlet } from 'react-router-dom'
 
 
-function Layout({children}) {
+function MainLayout() {
   return (
     <Fragment>
         <Navbar/>
         <main>
-            {children}
+            <Outlet />
         </main>
         <Footer />
 
@@ -16,4 +17,4 @@ function Layout({children}) {
   )
 }
 
-export default Layout
+export default MainLayout

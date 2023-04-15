@@ -15,7 +15,7 @@ export default function LoginForm({role}) {
     role,
     agree: false,
   });
-  const {logIn} =  useAuthContext()
+  const {logIn,userInfo} =  useAuthContext()
 
   const onChange = ({ target }) => {
     const { name, value, checked } = target;
@@ -33,19 +33,29 @@ export default function LoginForm({role}) {
     }
   }
 
+  const destination = ()=>{
+    if (userInfo && (userInfo.role ==='DOCTOR')){
+      return '/doctor'
+    }
+    else if( userInfo && (userInfo.role ==='PATIENT')){
+      return '/patient'
+    }
+  }
+
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(loginValues);
-    await logIn(loginValues)
-    navigate(state?.path || "/");
 
+    const user = await logIn(loginValues)
+    console.log({user})
+    if (user){
+      navigate(state?.path || '/dashboard/overview');
+    }
+    
   };
   return (
     <div className="">
       <form action="" className="w-full p-4" onSubmit={handleSubmit}>
         
-
-       
         <div className="mt-[1rem]">
           <TextField
             placeholder="Email"
@@ -63,8 +73,7 @@ export default function LoginForm({role}) {
             onChange={onChange}
           />
         </div>
-
-       
+     
         <div className="mt-8">
           <button
             type="submit"

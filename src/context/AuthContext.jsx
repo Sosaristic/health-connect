@@ -9,14 +9,15 @@ import useAuthState from '../custom/useAuthState';
 const AuthContext = createContext()
   
   export function AuthProvider({ children }) {
-       const { signUp,logIn,isAuth,signOut} = useAuthState();
-       console.log({isAuth})
+       const { signUp,logIn,isAuth,signOut,userInfo} = useAuthState();
+      
     
     const value = {
         signUp,
         logIn,
         isAuth,
-        signOut
+        signOut,
+        userInfo
     }
 
     return <AuthContext.Provider value={value}>

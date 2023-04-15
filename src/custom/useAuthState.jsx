@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../constant'
+import { API_URL } from '../constant';
 
 function useAuthState() {
    const [isAuth,setIsAuth] =  useState(false)
    const [userInfo,setUserInfo] = useState({})
+   
     
    useEffect(()=>{
         const token = localStorage.getItem('token')
@@ -44,15 +45,16 @@ const logIn = async (input)=>{
     }
     try{
         const {data} = await axios.post(`${API_URL}/api/v1/signin/`,user)
-        console.log({data})
         localStorage.setItem('token',data.access)
         const userDetail = {
             uid:data.id,
-            role:data.role
+            role:data.role,
+            slug:data.slug
         }
         localStorage.setItem('userInfo',JSON.stringify(userDetail))
-        setUserInfo(userDetail)
+        setUserInfo(userDetail)  
         setIsAuth(true)
+        return userDetail
     }
     catch(error){
         console.log({error:error})

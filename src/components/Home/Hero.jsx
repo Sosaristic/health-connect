@@ -18,7 +18,7 @@ export default function Hero() {
               needs of our patients
             </p>
           </div>
-          <button className="w-fit py-4 text-center md:self-start md:text-[1.2rem] bg-primary px-4 text-white rounded-md" onClick={()=>navigate("/book-appointment")}>
+          <button className="w-fit py-4 text-center md:self-start md:text-[1.2rem] bg-primary px-4 text-white rounded-md" onClick={()=>navigate("/dashboard")}>
             Book Appointment
           </button>
         </div>

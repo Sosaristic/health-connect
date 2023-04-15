@@ -6,6 +6,10 @@ import PharmacyIcon from "../assets/svg/pharmacy_alt.svg"
 import DiabetesIcon from "../assets/svg/diabetes.svg"
 import NeurologyIcon from "../assets/svg/neurology.svg"
 import SurgicalIcon from "../assets/svg/surgical.svg"
+import { AiTwotoneHome } from "react-icons/ai";
+import { ImAddressBook } from "react-icons/im";
+import { MdSettings, MdWorkHistory } from "react-icons/md";
+import { BsBellFill } from "react-icons/bs";
 export const successHistory = [
   {
     name: "Doctor",
@@ -95,3 +99,122 @@ export const ServicesData = [
     description: "Helps patients with prescription and description on how to take drugs",
   },
 ];
+
+
+export const DashboardLink = [
+  {
+    icon:<AiTwotoneHome className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
+    name:'Overview',
+    link:'/dashboard/overview'
+  },
+  {
+    icon:<ImAddressBook className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
+    name:'Appointment',
+    link:'/dashboard/patient'
+  },
+  {
+    icon:<MdWorkHistory className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
+    name:'History',
+    link:'/dashboard/history'
+  },
+  {
+    icon:<BsBellFill className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
+    name:'Notifications',
+    link:'/dashboard/notification'
+  },  
+  {
+    icon:<MdSettings className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
+    name:'Setting',
+    link:'/dashboard/setting'
+  },
+]
+
+export const DoctorServices = [
+  {
+    name:'Urology',
+    link:'urology',
+  },
+
+  {
+    name:'Anesthesiologists',
+    link:'anesthesiologist',
+  },
+
+  {
+    name:'Cardiologists',
+    link:'cardiologist',
+  },
+
+  {
+    name:'Dermatologists',
+    link:'dermatologist',
+  },
+
+  {
+    name:'Endocrinologists',
+    link:'endocrinologist',
+  },
+
+  
+  {
+    name:'Dentists',
+    link:'Dentist',
+  },
+  
+  {
+    name:'Gastroenterologists',
+    link:'gastroenterologist',
+  },
+  
+  {
+    name:'Hematologists',
+    link:'hematologist',
+  },
+
+  {
+    name:'Neurologists',
+    link:'neurologists',
+  },
+
+  {
+    name:'Neurologists',
+    link:'neurologist',
+  },
+
+  {
+    name:'Nephrologists',
+    link:'nephrologist'
+  },
+  
+  {
+    name:'Gynecologists',
+    link:'gynecologists'
+  },
+  
+  {
+    name:'Oncologists',
+    link:'oncologists'
+  },
+  {
+    name:'Ophthalmologists',
+    link:'ophthalmologist'
+  },
+  {
+    name:'Radiologists',
+    link:'radiologist'
+  },
+  {
+    name:'Pulmonologists',
+    link:'pulmonologists'
+  },
+  {
+    name:'Psychiatrists',
+    link:'psychiatrists'
+  },
+  {
+   name:'Otolaryngologists',
+   link:'otolaryngologist'
+  },
+
+
+]

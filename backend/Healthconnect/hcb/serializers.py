@@ -5,9 +5,14 @@ from .models import User,Patient,Doctor
 
 
 class UserSerializerToken(serializers.ModelSerializer):
+    slug = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = User
-        fields = ('id','role','email')
+        fields = ('id','role','email','slug')
+        
+    def get_slug(self,obj):
+        slug = f'{obj.first_name}-{obj.last_name}'
+        return slug
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
