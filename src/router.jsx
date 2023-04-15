@@ -8,6 +8,7 @@ import SettingPage from "./pages/SettingPage";
 import HistoryPage from "./pages/HistoryPage";
 import Notification from "./pages/Notification";
 import OverviewPage from "./pages/OverviewPage";
+import DoctorProfile from "./pages/DoctorProfile";
 
 export const router = createBrowserRouter([
   { 
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
     children: [
     { path: "overview", element: <OverviewPage />},
     { path: "patient", element:<PatientProfile /> }, 
-    { path: "doctor", element:<PatientProfile /> },
+    { path: "doctor", element:<DoctorProfile /> },
     { path: "setting", element:<SettingPage /> },
     { path: "history", element:<HistoryPage /> },
     { path: "notification", element:<Notification /> },
