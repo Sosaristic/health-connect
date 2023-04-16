@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { AppointmentHeader, SpecialistCard } from '../components/BooKAppointment'
 export default function BookAppointment() {
   return (
-    <div className='min-h-[80vh]'>
-      <h2>BookAppointment</h2> 
-      <Link to={'/dashboard/doctor'}>Doctor</Link>
-    
-    </div>
+    <main className='px-4 '>
+      <AppointmentHeader />
+      <section className='flex flex-wrap justify-center gap-4 mt-8 mb-4'>
+        
+        {Array.from({length: 6}, (item, id)=>< SpecialistCard key={id} id={id}/>)}
+      </section>
+    </main>
   )
 }

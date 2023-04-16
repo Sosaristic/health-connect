@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import { TextField, CheckBox } from "../Form";
 import { useAuthContext } from "../../context/AuthContext";
 
-export default function SignUpForm({role}) {
-  const {signUp} =  useAuthContext()
+ function SignUpForm({userType}) {
   const [signUpValues, setSignUpValues] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
     agree: false,
-    role
+    role:userType
   });
 
   const onChange = ({ target }) => {
@@ -102,3 +101,4 @@ export default function SignUpForm({role}) {
     </div>
   );
 }
+export default SignUpForm

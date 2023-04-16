@@ -3,16 +3,13 @@ import { TextField } from "../Form";
 import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate,useLocation } from "react-router-dom"
 
-
-export default function LoginForm({role}) {
+ function LoginForm({userType}) {
   const navigate = useNavigate()
   const { state } = useLocation();
   const [loginValues, setLoginValues] = useState({
-    surname: "",
-    firstname: "",
     email: "",
     password: "",
-    role,
+    role:userType,
     agree: false,
   });
   const {logIn,userInfo} =  useAuthContext()
@@ -33,24 +30,15 @@ export default function LoginForm({role}) {
     }
   }
 
-  const destination = ()=>{
-    if (userInfo && (userInfo.role ==='DOCTOR')){
-      return '/doctor'
-    }
-    else if( userInfo && (userInfo.role ==='PATIENT')){
-      return '/patient'
-    }
-  }
-
   const handleSubmit = async(e) => {
     e.preventDefault();
-
-    const user = await logIn(loginValues)
-    console.log({user})
-    if (user){
+    try{
+      await logIn(loginValues)
       navigate(state?.path || '/dashboard/overview');
     }
-    
+    catch(err){
+      console.log(err);
+    }
   };
   return (
     <div className="">
@@ -86,3 +74,4 @@ export default function LoginForm({role}) {
     </div>
   );
 }
+export default React.memo(LoginForm)

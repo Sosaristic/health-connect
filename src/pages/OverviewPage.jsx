@@ -1,12 +1,12 @@
 import React from 'react';
-import { OverviewBanner, OverviewServices } from '../components/Overview';
+import { OverviewBanner, OverviewBooking, OverviewServices } from '../components/Overview';
 
 
 function OverviewPage() {
   return (
     <div className='w-full flex flex-col gap-5'>
         <OverviewBanner/>
-        <OverviewServices/>
+        <OverviewBooking/>
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { GiHeartOrgan, GiMedicines } from "react-icons/gi";
 import HeartIcon from "../assets/svg/heart.svg"
-import EyeIcon from "../assets/svg/eye.svg"
 import UrologyIcon from "../assets/svg/urology.svg"
 import PharmacyIcon from "../assets/svg/pharmacy_alt.svg"
 import DiabetesIcon from "../assets/svg/diabetes.svg"
@@ -8,8 +7,13 @@ import NeurologyIcon from "../assets/svg/neurology.svg"
 import SurgicalIcon from "../assets/svg/surgical.svg"
 import { AiTwotoneHome } from "react-icons/ai";
 import { ImAddressBook } from "react-icons/im";
+import { FaCalendarAlt } from "react-icons/fa";
 import { MdSettings, MdWorkHistory } from "react-icons/md";
-import { BsBellFill } from "react-icons/bs";
+import { BsBellFill, BsFillCalendarCheckFill, BsFillCalendarXFill } from "react-icons/bs";
+import { HiCurrencyDollar } from "react-icons/hi";
+
+
+
 export const successHistory = [
   {
     name: "Doctor",
@@ -110,7 +114,7 @@ export const DashboardLink = [
   {
     icon:<ImAddressBook className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
     name:'Appointment',
-    link:'/dashboard/patient'
+    link:'/dashboard/appointment'
   },
   {
     icon:<MdWorkHistory className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>,
@@ -216,5 +220,31 @@ export const DoctorServices = [
    link:'otolaryngologist'
   },
 
+]
 
+export const BookingData = [
+  {
+    title:'Total Booking',
+    number:22,
+    bgColor:'bg-blue-100',
+    icon:<FaCalendarAlt  className={`h-[1.5rem] w-[1.5rem] fill-blue-500`} />,
+  },
+  {
+    title:'Booking Success',
+    number:22,
+    bgColor:'bg-green-100',
+    icon:<BsFillCalendarCheckFill className={`h-[1.5rem] w-[1.5rem] fill-green-500`} />
+  },
+  {
+    title:'Booking Cancel',
+    number:22,
+    bgColor:'bg-red-100',
+    icon:<BsFillCalendarXFill className={`h-[1.5rem] w-[1.5rem] fill-red-500`} /> 
+  },
+  {
+    title:'Paid Amount',
+    number:'$50',
+    bgColor:'bg-lime-100',
+    icon:<HiCurrencyDollar className={`h-[1.5rem] w-[1.5rem] fill-lime-500`} /> 
+  }
 ]

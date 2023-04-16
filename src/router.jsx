@@ -9,6 +9,8 @@ import HistoryPage from "./pages/HistoryPage";
 import Notification from "./pages/Notification";
 import OverviewPage from "./pages/OverviewPage";
 import DoctorProfile from "./pages/DoctorProfile";
+import { BookingPage } from "./components/BooKAppointment";
+import BookAppointment from "./pages/BookAppointment";
 
 export const router = createBrowserRouter([
   { 
@@ -22,12 +24,18 @@ export const router = createBrowserRouter([
     path: "/dashboard", element:<App />,
     children: [
     { path: "overview", element: <OverviewPage />},
+  
     { path: "patient", element:<PatientProfile /> }, 
     { path: "doctor", element:<DoctorProfile /> },
     { path: "setting", element:<SettingPage /> },
     { path: "history", element:<HistoryPage /> },
     { path: "notification", element:<Notification /> },
-  
+    { path:'appointment',element: <BookAppointment />,
+     children:[
+         {path:':id',element: <BookingPage />}
+       ]
+    },
+    
     ]
    },
   {

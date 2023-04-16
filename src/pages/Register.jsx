@@ -1,28 +1,24 @@
+import React, {useState,useEffect} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GoogleLogin, LoginForm, SignUpForm, UserTypeInput } from "../components/Form";
 
 import ConsultantImg from "../assets/svg/medical-consultant.svg";
-import React, { useEffect, useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 export default function Register() {
   const { pathname,state } = useLocation();
   const { isAuth } = useAuthContext();
   const navigate = useNavigate()
+  const [userType, setUserType] = useState("DOCTOR")
 
-  const [value, setValue] = useState("DOCTOR");
-  const handleUser = (e) => {
-    setValue(e.target.value);
-  };
+ function onChangeUserType(userType){
+     setUserType(userType)
+ }
 
-  useEffect(()=>{
-      if(isAuth) navigate(state?.pathname || '/')
-  },[isAuth])
+useEffect(()=>{
+  if(isAuth) navigate(state?.pathname || '/')
+},[isAuth])
 
-  const handleUserCardClick = (user)=>{
-    user == "DOCTOR"? setValue("DOCTOR") : setValue("PATIENT")
-  }
- 
 
   return (
     <div className="md:bg-primary flex w-[80%] md:w-[100%]  min-h-[100vh] mx-auto relative ">
@@ -39,13 +35,9 @@ export default function Register() {
         ) : (
           <h2 className="mt-[3rem] font-[900] text-[1.5rem]">Create Account</h2>
         )}
-        <UserTypeInput 
-         handleUserCardClick={handleUserCardClick}
-         handleUser={handleUser}  
-         value={value}  
-         />
+        <UserTypeInput userType= {userType} handleUserType={onChangeUserType}/>
 
-        {pathname == "/sign-up" ? <SignUpForm role={value} /> : <LoginForm role={value} />}
+        {pathname == "/sign-up" ? <SignUpForm userType={userType}/> : <LoginForm userType={userType}/>}
         {/* sign up with google */}
 
         <div className="mt-8">
