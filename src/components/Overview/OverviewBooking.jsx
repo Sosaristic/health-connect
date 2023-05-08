@@ -5,7 +5,7 @@ import { BookingData } from '../../data';
 
 function OverviewBooking() {
   return (
-    <div className='flex items-center w-full justify-between'>
+    <div className='flex items-center w-full lg:justify-between gap-4 lg:gap-0 flex-col lg:flex-row flex-wrap'>
       {BookingData.map((booking,i)=>(
         <BookingStatus
         key={i}

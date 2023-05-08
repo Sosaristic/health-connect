@@ -4,8 +4,10 @@ import { DashboardLink } from '../../data'
 import { IoExit } from 'react-icons/io5';
 import DefaultImg from "../../assets/images/default.png";
 import { FaTimes } from 'react-icons/fa';
+import useLogout from '../../hooks/useLogout';
 
 function SideNavbar({slide,setSlide}) {
+  const logout = useLogout()
   return (
     <div className={`xl:w-[15%] fixed left-0 top-0 z-[6] ${slide ? 'translate-x-0':'-translate-x-[100%]' }  xl:translate-x-[0] w-[60%] lg:w-[30%] h-screen bg-secondary border-r`}>
      <div className='h-[15vh] p-4 flex flex-col  '>
@@ -33,7 +35,7 @@ function SideNavbar({slide,setSlide}) {
         </ul>
         <ul className='w-full flex flex-col gap-2'>
             <li  className='w-full'>
-              <NavLink to={``} className={' w-full p-4  flex  items-center  gap-4 rounded-lg'}>
+              <NavLink to={`/dashboard/profile`} className={' w-full p-4  flex  items-center  gap-4 rounded-lg'}>
               <div className='w-[2rem] h-[2rem]'>
                 <img src={DefaultImg} alt='' />
               </div>
@@ -41,7 +43,7 @@ function SideNavbar({slide,setSlide}) {
              </NavLink>
              </li>  
              <li  className='w-full'>
-             <NavLink  className={'w-full p-4  flex  items-center  gap-4 rounded-lg'}>
+             <NavLink onClick={()=>logout()}  className={'w-full p-4  flex  items-center  gap-4 rounded-lg'}>
              <IoExit className='h-[1rem] w-[1rem] lg:h-[1.5rem] lg:w-[1.5rem]'/>
                <span className='text-[.8rem] lg:text-[1rem] font-semibold'>Sign out</span>
              </NavLink>

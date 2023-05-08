@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { TextField } from "../Form";
+import { useNavigate,useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
+import { axiosInstance } from "../../utils/axios";
 import { useAuthContext } from "../../context/AuthContext";
-import { useNavigate,useLocation } from "react-router-dom"
 
  function LoginForm({userType}) {
+  const { setAccessToken, setCSRFToken } =  useAuthContext()
   const navigate = useNavigate()
   const { state } = useLocation();
+
   const [loginValues, setLoginValues] = useState({
     email: "",
     password: "",
-    role:userType,
     agree: false,
   });
-  const {logIn,userInfo} =  useAuthContext()
 
   const onChange = ({ target }) => {
     const { name, value, checked } = target;
@@ -32,13 +35,18 @@ import { useNavigate,useLocation } from "react-router-dom"
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    const { email,password } = loginValues
+      const user = {email,password}
     try{
-      await logIn(loginValues)
-      navigate(state?.path || '/dashboard/overview');
+         const response = await axiosInstance.post(`/login/`,user)
+         setAccessToken(response?.data?.access_token)
+         setCSRFToken(response.headers["x-csrftoken"])
+         navigate(state.path ? state.path : '/dashboard/overview')
+         toast.success("User successfully Login ");
     }
-    catch(err){
-      console.log(err);
-    }
+    catch(error){
+        toast.error("Invalid Email/Password!");
+        }
   };
   return (
     <div className="">

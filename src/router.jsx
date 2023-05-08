@@ -3,48 +3,69 @@ import App from "./App";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import MainLayout from "./components/Layout/MainLayout";
-import PatientProfile from "./pages/PatientProfile";
 import SettingPage from "./pages/SettingPage";
 import HistoryPage from "./pages/HistoryPage";
 import Notification from "./pages/Notification";
 import OverviewPage from "./pages/OverviewPage";
-import DoctorProfile from "./pages/DoctorProfile";
 import { BookingPage } from "./components/BooKAppointment";
 import BookAppointment from "./pages/BookAppointment";
+import PersistLogin from "./components/Layout/PersistLogin";
+import ProtectedRoute from "./components/RouteGuard/ProtectedRoute";
+import DashboardLayout from "./components/Layout/DashboardLayout";
+import EditProfile from "./pages/EditProfile";
+import Profile from "./pages/Profile";
 
 export const router = createBrowserRouter([
-  { 
-    path:'/',
-    element:<MainLayout />,
-    children: [
-      { path: "", element: <Home /> },
-   ],
-  },
-  { 
-    path: "/dashboard", element:<App />,
-    children: [
-    { path: "overview", element: <OverviewPage />},
-  
-    { path: "patient", element:<PatientProfile /> }, 
-    { path: "doctor", element:<DoctorProfile /> },
-    { path: "setting", element:<SettingPage /> },
-    { path: "history", element:<HistoryPage /> },
-    { path: "notification", element:<Notification /> },
-    { path:'appointment',element: <BookAppointment />,
-     children:[
-         {path:':id',element: <BookingPage />}
-       ]
-    },
-    
-    ]
+  {
+    element:<PersistLogin />,
+    children:[
+      { 
+        path:'/',
+        element:<MainLayout />,
+        children: [
+          { path: "", element: <Home /> },
+          {
+            path: "login",
+            element: <Register />,
+          },
+        
+          {
+            path: "sign-up",
+            element: <Register />,
+          },
+          { element:<ProtectedRoute/>,
+           children:[
+            
+           { path:'appointment',element: <BookAppointment />},
+           {path:'appointment/detail',element: <BookingPage />}
+         ]
+        },
+         
+       ],
+      },
+      { element: <ProtectedRoute />,
+       children:[
+          { 
+          path: "/dashboard", element:<DashboardLayout /> ,
+          children: [
+          { path: "overview", element: <OverviewPage />},  
+          { path: "setting", element:<SettingPage /> },
+          { path: "history", element:<HistoryPage /> },
+          { path: "notification", element:<Notification /> },
+          { path: "profile", element:<Profile />},
+          { path:'profile/edit', element:<EditProfile />},
+          
+          ]
+         },
+      ]
    },
-  {
-    path: "/login",
-    element: <Register />,
-  },
 
-  {
-    path: "/sign-up",
-    element: <Register />,
+     
+    ]
   },
+  
+ 
+ 
 ]);
+
+PersistLogin

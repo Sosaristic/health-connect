@@ -38,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     role= models.CharField(max_length=30,choices=User_Roles)
+    country = models.CharField(max_length=20,null=True, blank=True)
     state=models.CharField(max_length=20,null=True, blank=True)
     image= models.ImageField(upload_to='users', null=True,blank=True,default='default.jpg')
     phone_number = models.CharField(max_length=20 , blank=True,null=True)
@@ -49,6 +50,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    def has_perm(self, perm: str, obj: None = None) -> bool:
+        return super().has_perm(perm, obj)
+    
+    def has_module_perms(self, app_label: str) -> bool:
+        return super().has_module_perms(app_label)
 
 Patient_MaritalStatus = (
     ('SINGLE', 'SINGLE'),
@@ -83,6 +89,9 @@ class Doctor(models.Model):
     hospital=models.CharField(max_length=50,null=True,blank=True)
     experience=models.IntegerField(null=True,blank=True)
     field = models.CharField( max_length=50, null=True,blank=True)
+    bio = models.CharField(max_length=50, null=True, blank=True)
+    qualification = models.CharField(max_length=50, null=True,blank=True)
+    location = models.CharField(max_length=50, null=True,blank=True)
     
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
