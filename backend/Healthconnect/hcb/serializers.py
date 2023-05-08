@@ -20,21 +20,21 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         fields = ('role','email','password')
         model = User
         
-    # @classmethod
-    # def get_token(cls, user):
-    #     token = super().get_token(user)
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
 
-    #     token["role"] = user.role
+        token["role"] = user.role
 
-    #     return token
+        return token
 
-    def validate(self, attrs):
-        data = super().validate(attrs)
+    # def validate(self, attrs):
+    #     data = super().validate(attrs)
 
-        serializer = UserSerializerToken(self.user).data
-        for k, v in serializer.items():
-            data[k] = v
-        return data
+    #     serializer = UserSerializerToken(self.user).data
+    #     for k, v in serializer.items():
+    #         data[k] = v
+    #     return data
 
 class UserSignUpSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,58 +62,62 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=('id','image','email','first_name','last_name','phone_number','gender','state')  
+        fields=('id','image','role','email','first_name','last_name','phone_number','gender','state','country')  
         
         
+class PatientSerializer(serializers.ModelSerializer):
+    
+    class  Meta:
+        model = Patient
+        fields=('blood_group','age','weight','genotype','marital_status','medical_history')
+        
+    def update(self,instance,validated_data):
+        print('validated_data', validated_data)
+        return instance
+    
+    def to_representation(self, instance):
+        print('att',instance)
+        data = super().to_representation(instance)
+        user = self.context['user']
+        serializer = UserProfileSeriliazer(user).data
+        print(serializer)
+        for k, v in serializer.items():
+            data[k] = v
+        return data
+    
 class PatientProfileSerializer(serializers.ModelSerializer):
-    uid = serializers.SerializerMethodField(read_only=True)
-    image = serializers.SerializerMethodField(read_only=True)
-    email = serializers.SerializerMethodField(read_only=True)
-    firstname  = serializers.SerializerMethodField(read_only=True)
-    lastname = serializers.SerializerMethodField(read_only=True)
-    phonenumber = serializers.SerializerMethodField(read_only=True)
-    gender = serializers.SerializerMethodField(read_only=True)
-    state = serializers.SerializerMethodField(read_only=True)    
+    uid = serializers.CharField(read_only=True,source='user.id')
+    image = serializers.ImageField(source='user.image')
+    email = serializers.EmailField(read_only=True,source='user.email')
+    firstname  = serializers.CharField(source='user.first_name')
+    lastname = serializers.CharField(source='user.last_name')
+    phonenumber = serializers.CharField(source='user.phone_number')
+    gender = serializers.CharField(source='user.gender')
+    state = serializers.CharField(source='user.state') 
+    country = serializers.CharField(source='user.country')   
     class Meta:
         model=Patient
-        fields=('uid','image','email','firstname','lastname','phonenumber','gender','state','blood_group','age','weight','genotype','marital_status','medical_history')
+        fields=('uid','image','email','firstname','lastname','phonenumber','gender','state','country','blood_group','age','weight','genotype','marital_status','medical_history')
         
-    def get_user(self, obj):
-        user = obj.user
-        serializer = UserProfileSeriliazer(user, many=False)
-        return serializer.data 
-    
-    def get_uid(self, obj):
-        user = self.get_user(obj)
-        return user['id']
-    
-    def get_image(self, obj):
-        user = self.get_user(obj)
-        return user['image'] 
-    
-    def get_email(self, obj):
-        user = self.get_user(obj)
-        return user['email']
-    
-    def get_firstname(self, obj):
-        user = self.get_user(obj)
-        return user['first_name']
-    
-    def get_lastname(self, obj):
-        user = self.get_user(obj)
-        return user['last_name'] 
-    
-    def get_phonenumber(self, obj):
-        user = self.get_user(obj)
-        return user['phone_number'] 
-     
-    def get_state(self, obj):
-        user = self.get_user(obj)
-        return user['state'] 
-    
-    def get_gender(self, obj):
-        user = self.get_user(obj)
-        return user['gender'] 
+    def update(self,instance,validated_data):
+        user_data = validated_data.pop('user')
+        user = instance.user
+        user.first_name = user_data.get('first_name',user.first_name)
+        user.image = user_data.get('image',user.image)
+        user.last_name = user_data.get('last_name',user.last_name)
+        user.phone_number = user_data.get('phone_number',user.phone_number)
+        user.gender = user_data.get('gender',user.gender)
+        user.state = user_data.get('state',user.state)
+        user.country = user_data.get('country',user.country)
+        user.save()
+        instance.blood_group = validated_data.get('blood_group',instance.blood_group)
+        instance.age = validated_data.get('age',instance.age)
+        instance.weight = validated_data.get('weight',instance.weight)
+        instance.genotype = validated_data.get('genotype',instance.genotype)
+        instance.marital_status = validated_data.get('marital_status',instance.marital_status)
+        instance.medical_history = validated_data.get('medical_history',instance.medical_history)
+        instance.save()
+        return instance
          
            
          
@@ -121,55 +125,39 @@ class PatientProfileSerializer(serializers.ModelSerializer):
                   
         
 class DoctorProfileSerializer(serializers.ModelSerializer):
-    uid = serializers.SerializerMethodField(read_only=True)
-    image = serializers.SerializerMethodField(read_only=True)
-    email = serializers.SerializerMethodField(read_only=True)
-    firstname  = serializers.SerializerMethodField(read_only=True)
-    lastname = serializers.SerializerMethodField(read_only=True)
-    phonenumber = serializers.SerializerMethodField(read_only=True)
-    gender = serializers.SerializerMethodField(read_only=True)
-    state = serializers.SerializerMethodField(read_only=True)
+    uid = serializers.CharField(read_only=True,source='user.id')
+    image = serializers.ImageField(source='user.image')
+    email = serializers.EmailField(read_only=True,source='user.email')
+    firstname  = serializers.CharField(source='user.first_name')
+    lastname = serializers.CharField(source='user.last_name')
+    phonenumber = serializers.CharField(source='user.phone_number')
+    gender = serializers.CharField(source='user.gender')
+    state = serializers.CharField(source='user.state') 
+    country = serializers.CharField(source='user.country')  
     class Meta:
         model=Doctor
-        fields=('uid','image','email','firstname','lastname','phonenumber','gender','state','hospital','experience','field')
+        fields=('uid','image','email','firstname','lastname','phonenumber','gender','state','country','hospital','experience','field','bio','qualification','location')
 
-        
-    def get_user(self, obj):
-        user = obj.user
-        serializer = UserProfileSeriliazer(user, many=False)
-        return serializer.data 
+    def update(self,instance,validated_data):
+        user_data = validated_data.pop('user')
+        user = instance.user
+        user.first_name = user_data.get('first_name',user.first_name)
+        user.image = user_data.get('image',user.image)
+        user.last_name = user_data.get('last_name',user.last_name)
+        user.phone_number = user_data.get('phone_number',user.phone_number)
+        user.gender = user_data.get('gender',user.gender)
+        user.state = user_data.get('state',user.state)
+        user.country = user_data.get('country',user.country)
+        user.save()
+        instance.hospital = validated_data.get('hospital',instance.hospital) 
+        instance.experience = validated_data.get('experience',instance.experience)  
+        instance.field = validated_data.get('field',instance.field) 
+        instance.bio = validated_data.get('bio',instance.bio) 
+        instance.qualification = validated_data.get('qualification',instance.qualification) 
+        instance.location = validated_data.get('location',instance.location) 
+        instance.save()
+        return instance   
     
-    def get_uid(self, obj):
-        user = self.get_user(obj)
-        return user['id']
-    
-    def get_image(self, obj):
-        user = self.get_user(obj)
-        return user['image'] 
-    
-    def get_email(self, obj):
-        user = self.get_user(obj)
-        return user['email']
-    
-    def get_firstname(self, obj):
-        user = self.get_user(obj)
-        return user['first_name']
-    
-    def get_lastname(self, obj):
-        user = self.get_user(obj)
-        return user['last_name'] 
-    
-    def get_phonenumber(self, obj):
-        user = self.get_user(obj)
-        return user['phone_number'] 
-     
-    def get_state(self, obj):
-        user = self.get_user(obj)
-        return user['state'] 
-    
-    def get_gender(self, obj):
-        user = self.get_user(obj)
-        return user['gender'] 
          
     
         

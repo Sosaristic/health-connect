@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     "corsheaders",
     'hcb.apps.HcbConfig',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
-     "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,9 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
-
-CORS_ALLOW_ALL_ORIGINS=True
 
 ROOT_URLCONF = 'Healthconnect.urls'
 
@@ -107,18 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# JWT Authentication settings for default
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+
 # JWT Settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
@@ -144,6 +139,42 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    
+  'AUTH_COOKIE': 'access_token',  # Cookie name. Enables cookies if value is set.
+  'AUTH_COOKIE_REFRESH': 'refresh_token',
+  'AUTH_COOKIE_DOMAIN': None,     # A string like "example.com", or None for standard domain cookie.
+  'AUTH_COOKIE_SECURE': True,    # Whether the auth cookies should be secure (https:// only).
+  'AUTH_COOKIE_HTTP_ONLY' : True, # Http only cookie flag.It's not fetch by javascript.
+  'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
+  'AUTH_COOKIE_SAMESITE': 'None',
+}
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:5173',
+)
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTP_ONLY = True
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+]
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE='Lax'
+SESSION_COOKIE_SAMESITE ='Lax'
+
+# JWT Authentication settings for default
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'hcb.authenticate.CustomAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
 }
 
 # Internationalization

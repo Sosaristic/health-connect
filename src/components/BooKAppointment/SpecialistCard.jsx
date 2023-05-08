@@ -7,7 +7,7 @@ import { MdLocationPin } from "react-icons/md";
 export default function SpecialistCard({ id }) {
   const navigate = useNavigate();
   function handleNavigate() {
-    navigate(`/dashboard/appointment/${id}`);
+    navigate(`/appointment/detail`);
   }
   return (
     <div

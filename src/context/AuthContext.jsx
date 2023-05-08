@@ -1,23 +1,25 @@
-
-import React, {createContext,useContext} from 'react';
-import useAuthState from '../custom/useAuthState';
+import jwt_decode from "jwt-decode";
+import dayjs from 'dayjs'
+import React, {createContext,useContext, useEffect, useState} from 'react';
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import useRefreshToken from "../hooks/useRefreshToken";
 
   
-  
-
 
 const AuthContext = createContext()
   
-  export function AuthProvider({ children }) {
-       const { signUp,logIn,isAuth,signOut,userInfo} = useAuthState();
-      
-    
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState({})
+    const [accessToken, setAccessToken] = useState('')
+    const [refreshToken, setRefreshToken] = useState('')
+    const [csrftoken, setCSRFToken] = useState('')
+    const [isloading,setIsLoading] =  useState(true)
+     
     const value = {
-        signUp,
-        logIn,
-        isAuth,
-        signOut,
-        userInfo
+      user, setUser,
+      accessToken, setAccessToken,
+      refreshToken, setRefreshToken,
+      csrftoken, setCSRFToken
     }
 
     return <AuthContext.Provider value={value}>

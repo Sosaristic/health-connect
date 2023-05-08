@@ -26,7 +26,7 @@ function DashboardHeader({setSlide}) {
              </form>
 
              <div className='xl:h-[3rem] xl:w-[3rem]   w-[2rem] h-[2rem] rounded-[50%] lg:h-[70%] cursor-pointer flex justify-center items-center bg-primary relative'>
-              <p className='h-[.7rem] w-[.7rem]  md:w-[1rem] md:h-[1rem] rounded-[50%] flex justify-center items-center p-2 absolute top-2 right-0 bg-red-600 text-white -translate-y-1/2'>2</p>
+              <span className='h-[.7rem] w-[.7rem]  md:w-[1rem] md:h-[1rem] rounded-[50%] flex justify-center items-center p-2 absolute top-2 right-0 bg-red-600 text-white -translate-y-1/2'>2</span>
               <BsBellFill className='lg:h-[1.5rem] lg:w-[1.5rem] md:h-[1rem] md:w-[1rem] fill-white' />
              </div>
 

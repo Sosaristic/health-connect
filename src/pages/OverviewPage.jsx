@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverviewBanner, OverviewBooking, OverviewServices } from '../components/Overview';
+import OverviewUpComing from '../components/Overview/OverviewUpComing';
 
 
 function OverviewPage() {
@@ -7,6 +8,7 @@ function OverviewPage() {
     <div className='w-full flex flex-col gap-5'>
         <OverviewBanner/>
         <OverviewBooking/>
+        <OverviewUpComing />
     </div>
   )
 }

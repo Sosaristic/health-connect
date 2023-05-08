@@ -2,6 +2,8 @@ import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import { TextField, CheckBox } from "../Form";
 import { useAuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import  { axiosInstance } from "../../utils/axios";
 
  function SignUpForm({userType}) {
   const [signUpValues, setSignUpValues] = useState({
@@ -31,8 +33,23 @@ import { useAuthContext } from "../../context/AuthContext";
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(signUpValues);
-     await signUp(signUpValues)
+    const {firstname,lastname,password,email,role} = signUpValues;
+    const user = {
+      first_name:firstname,
+      last_name:lastname,
+      password:password,
+      role:role,
+      email:email
+  }
+  try{
+      const {data} = await axiosInstance.post(`/signup/`,user)
+      toast.success('Account successfully Registered, please log in');
+      navigate("/login");
+  }
+  catch(error){
+    console.log({error});
+     toast.error(error.response.data?.email?error.response.data?.email?.[0]:'Invalid Credentials ');
+  }
   };
   return (
     <div>
